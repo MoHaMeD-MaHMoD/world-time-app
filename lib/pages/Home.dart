@@ -12,6 +12,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    Map dataFromScreen = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -51,11 +52,11 @@ class _HomeState extends State<Home> {
                 child: Column(
                   children: [
                     Text(
-                      "03 : 45 Pm",
+                      dataFromScreen["time"],
                       style: TextStyle(fontSize: 55, color: Colors.white),
                     ),
                     Text(
-                      "Cairo",
+                      dataFromScreen["zone"],
                       style: TextStyle(fontSize: 46, color: Colors.white),
                     ),
                   ],

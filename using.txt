@@ -1,3 +1,4 @@
 World Time API
 Flutter Spinkit package
+intl package
 assets

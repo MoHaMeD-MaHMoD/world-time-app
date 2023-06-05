@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, prefer_conditional_assignment
 
 import 'package:flutter/material.dart';
 
@@ -10,21 +10,41 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Map data = {};
+
   @override
   Widget build(BuildContext context) {
-    Map dataFromScreen = ModalRoute.of(context)!.settings.arguments as Map;
+    data = (data.isEmpty)
+        ? ModalRoute.of(context)!.settings.arguments as Map
+        : data;
+    String imgName = (data["isDay"]) ? "day.png" : "night.png";
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
             color: Color.fromRGBO(111, 25, 65, 65),
             image: DecorationImage(
-                image: AssetImage("assets/day.png"), fit: BoxFit.cover)),
+                image: AssetImage("assets/$imgName"), fit: BoxFit.cover)),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () async {
+                  dynamic result =
+                      await Navigator.pushNamed(context, "/Location");
+
+                  setState(() {
+                    if (result == null) {
+                      result = {
+                        "time": " ",
+                        "zone": "please choose a location 😎 ",
+                        "isDay": false
+                      };
+                      data = result;
+                    } else
+                      data = result;
+                  });
+                },
                 icon: Icon(
                   Icons.edit_location,
                   color: Color.fromRGBO(225, 219, 197, 1),
@@ -52,12 +72,12 @@ class _HomeState extends State<Home> {
                 child: Column(
                   children: [
                     Text(
-                      dataFromScreen["time"],
-                      style: TextStyle(fontSize: 55, color: Colors.white),
+                      data["time"],
+                      style: TextStyle(fontSize: 32, color: Colors.white),
                     ),
                     Text(
-                      dataFromScreen["zone"],
-                      style: TextStyle(fontSize: 46, color: Colors.white),
+                      data["zone"],
+                      style: TextStyle(fontSize: 45, color: Colors.white),
                     ),
                   ],
                 ),

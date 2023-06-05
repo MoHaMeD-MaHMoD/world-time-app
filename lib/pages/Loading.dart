@@ -15,7 +15,7 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
   getDataFromAllCountriesClass() async {
     AllCountries allCountries =
-        AllCountries(url : "Africa/Cairo", flag: "Egypt-Cairo", countryName: "egypt.png");
+        AllCountries(url : "Africa/Cairo", countryName: "Egypt-Cairo", flag: "egypt.png");
     await allCountries.getData();
     Navigator.pushReplacementNamed(context, '/Home', arguments: {
       "time": allCountries.stringRealTime,

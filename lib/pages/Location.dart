@@ -55,7 +55,7 @@ class _LocationState extends State<Location> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(157, 162, 180, 1),
         title: Text(
-          "Choise Location",
+          "choose Location",
           style: TextStyle(fontSize: 26),
         ),
       ),
@@ -76,12 +76,12 @@ class _LocationState extends State<Location> {
                   allCountry[index].countryName,
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
                 ),
-                onTap: () async{
+                onTap: () async {
                   AllCountries clickedCountry = allCountry[index];
                   await clickedCountry.getData();
                   Navigator.pop(context, {
-                    "time": clickedCountry.timeZone,
-                    "zone": clickedCountry.stringRealTime,
+                    "time": clickedCountry.stringRealTime,
+                    "zone": clickedCountry.timeZone,
                     "isDay": clickedCountry.isDay
                   });
                 },

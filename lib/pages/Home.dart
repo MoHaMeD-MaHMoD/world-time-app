@@ -36,8 +36,8 @@ class _HomeState extends State<Home> {
                   setState(() {
                     if (result == null) {
                       result = {
-                        "time": " ",
-                        "zone": "please choose a location 😎 ",
+                        "time": "",
+                        "zone": "plz choose a location 😎",
                         "isDay": false
                       };
                       data = result;
@@ -72,11 +72,11 @@ class _HomeState extends State<Home> {
                 child: Column(
                   children: [
                     Text(
-                      data["time"],
+                      data["zone"],
                       style: TextStyle(fontSize: 32, color: Colors.white),
                     ),
                     Text(
-                      data["zone"],
+                      data["time"],
                       style: TextStyle(fontSize: 45, color: Colors.white),
                     ),
                   ],
